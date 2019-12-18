@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="关于ssh公钥认证客户端对ssh服务端进行ssh登录时，服务端将检查客户端的ssh公钥是否存在~&#x2F;.ssh&#x2F;authorized_keys中，如果存在则直接免密码登录。但这个过程并非把客户端的ssh公钥（如，~&#x2F;.ssh&#x2F;id_rsa.pub）直接发给服务端。 以下是更为详细的过程： 1234561、客户端发送公钥指纹2、服务端比较指纹是否存在authorized_keys中3、服务端生成随机数，">
+    <meta name="description" content="关于ssh公钥认证客户端对ssh服务端进行ssh登录时，服务端将检查客户端的ssh公钥是否存在~&#x2F;.ssh&#x2F;authorized_keys中，如果存在则直接免密码登录。但这个过程并非把客户端的ssh公钥（如，~&#x2F;.ssh&#x2F;id_rsa.pub）直接发给服务端。 以下是更为详细的过程： 123456客户端发送公钥指纹服务端比较指纹是否存在authorized_keys中服务端生成随机数，随机数用au">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ssh_pub_key">
 <meta property="og:url" content="http:&#x2F;&#x2F;dbthink.org&#x2F;2019&#x2F;12&#x2F;18&#x2F;ssh-pub-key&#x2F;index.html">
 <meta property="og:site_name" content="keep going">
-<meta property="og:description" content="关于ssh公钥认证客户端对ssh服务端进行ssh登录时，服务端将检查客户端的ssh公钥是否存在~&#x2F;.ssh&#x2F;authorized_keys中，如果存在则直接免密码登录。但这个过程并非把客户端的ssh公钥（如，~&#x2F;.ssh&#x2F;id_rsa.pub）直接发给服务端。 以下是更为详细的过程： 1234561、客户端发送公钥指纹2、服务端比较指纹是否存在authorized_keys中3、服务端生成随机数，">
+<meta property="og:description" content="关于ssh公钥认证客户端对ssh服务端进行ssh登录时，服务端将检查客户端的ssh公钥是否存在~&#x2F;.ssh&#x2F;authorized_keys中，如果存在则直接免密码登录。但这个过程并非把客户端的ssh公钥（如，~&#x2F;.ssh&#x2F;id_rsa.pub）直接发给服务端。 以下是更为详细的过程： 123456客户端发送公钥指纹服务端比较指纹是否存在authorized_keys中服务端生成随机数，随机数用au">
 <meta property="og:locale" content="cn">
 <meta property="article:published_time" content="2019-12-18T08:26:17.000Z">
-<meta property="article:modified_time" content="2019-12-18T09:20:38.079Z">
+<meta property="article:modified_time" content="2019-12-18T09:23:11.641Z">
 <meta property="article:author" content="greysign">
 <meta name="twitter:card" content="summary">
     
@@ -134,7 +134,7 @@
   <div class="content" itemprop="articleBody">
     <h2 id="关于ssh公钥认证"><a href="#关于ssh公钥认证" class="headerlink" title="关于ssh公钥认证"></a>关于ssh公钥认证</h2><p>客户端对ssh服务端进行ssh登录时，服务端将检查客户端的ssh公钥是否存在<code>~/.ssh/authorized_keys</code>中，如果存在则直接免密码登录。<br>但这个过程并非把客户端的ssh公钥（如，~/.ssh/id_rsa.pub）直接发给服务端。</p>
 <p>以下是更为详细的过程：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1、客户端发送公钥指纹</span><br><span class="line">2、服务端比较指纹是否存在authorized_keys中</span><br><span class="line">3、服务端生成随机数，随机数用authorized_keys匹配到的公钥加密</span><br><span class="line">4、服务端发回加密后的随机数给客户端</span><br><span class="line">5、客户端对加密后的随机数解密，并用MD5加密后发回服务端</span><br><span class="line">6、服务端校验该MD5并确认鉴权完成。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">客户端发送公钥指纹</span><br><span class="line">服务端比较指纹是否存在authorized_keys中</span><br><span class="line">服务端生成随机数，随机数用authorized_keys匹配到的公钥加密</span><br><span class="line">服务端发回加密后的随机数给客户端</span><br><span class="line">客户端对加密后的随机数解密，并用MD5加密后发回服务端</span><br><span class="line">服务端校验该MD5并确认鉴权完成。</span><br></pre></td></tr></table></figure>
 
 <p>在这个过程中不会发送公钥，发送的是公钥指纹，如果想记录该公钥指纹，可以打开<code>/etd/ssh/sshd_config</code>的啰嗦模式：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LogLevel VERBOSE</span><br></pre></td></tr></table></figure>
