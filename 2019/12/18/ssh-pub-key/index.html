@@ -14,7 +14,7 @@
 <meta property="og:description" content="关于ssh公钥认证客户端对ssh服务端进行ssh登录时，服务端将检查客户端的ssh公钥是否存在~&#x2F;.ssh&#x2F;authorized_keys中，如果存在则直接免密码登录。但这个过程并非把客户端的ssh公钥（如，~&#x2F;.ssh&#x2F;id_rsa.pub）直接发给服务端。 以下是更为详细的过程： 1234561、客户端发送公钥指纹2、服务端比较指纹是否存在authorized_keys中3、服务端生成随机数，">
 <meta property="og:locale" content="cn">
 <meta property="article:published_time" content="2019-12-18T08:26:17.000Z">
-<meta property="article:modified_time" content="2019-12-18T09:18:43.293Z">
+<meta property="article:modified_time" content="2019-12-18T09:20:38.079Z">
 <meta property="article:author" content="greysign">
 <meta name="twitter:card" content="summary">
     
@@ -98,7 +98,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于ssh公钥认证"><span class="toc-number">1.</span> <span class="toc-text">关于ssh公钥认证</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于ssh公钥认证"><span class="toc-number">1.</span> <span class="toc-text">关于ssh公钥认证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#当然还有些东西值得多说一句……"><span class="toc-number">2.</span> <span class="toc-text">当然还有些东西值得多说一句……</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -147,8 +147,7 @@
 
 <p>将公钥用ssh-keygen计算出指纹，再将指纹比对日志中的指纹，则可确认公钥与指纹的关系。</p>
 <p>当然也可以做个懒人脚本去自动化分析，但我懒得写了:-)</p>
-<p>##当然还有些东西值得多说一句……</p>
-<p>去研究这个点主要是发现了一些大站公开提供了用户公钥信息，试了下可以捞到很多人……<br>等这个大站fix掉这个功能（隐患）后再说了……</p>
+<h2 id="当然还有些东西值得多说一句……"><a href="#当然还有些东西值得多说一句……" class="headerlink" title="当然还有些东西值得多说一句……"></a>当然还有些东西值得多说一句……</h2><p>去研究这个点主要是发现了一些大站公开提供了用户公钥信息，试了下可以捞到很多人……<br>等这个大站fix掉这个功能（隐患）后再说了……</p>
 
   </div>
 </article>
@@ -173,7 +172,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于ssh公钥认证"><span class="toc-number">1.</span> <span class="toc-text">关于ssh公钥认证</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于ssh公钥认证"><span class="toc-number">1.</span> <span class="toc-text">关于ssh公钥认证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#当然还有些东西值得多说一句……"><span class="toc-number">2.</span> <span class="toc-text">当然还有些东西值得多说一句……</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
